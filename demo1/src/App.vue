@@ -4,8 +4,8 @@
     <input :value="message" @input="handleChange">
     {{message}} {{message + message}}<!--可以支持表达式，但不支持语句-->
         <div :id = "message"></div><!--将id名字与message绑定一起，用v-bind：或者直接简写成：-->
-        <todo-list>
-            <todo-item @delete="handleDelete" v-for="item in list" :key="item.title" :title="item.title" :del="item.del">
+        <todo-list><!--如果如下用index作为索引，key的index为0就会有问题-->
+            <todo-item @delete="handleDelete" v-for="(item, index) in list" :key="index" :title="item.title" :del="item.del">
                 <template v-slot:pre-icon="{value}"><!--新语法：具名插槽-->
                     <span>前置图标{{value}}</span>
                 </template>
